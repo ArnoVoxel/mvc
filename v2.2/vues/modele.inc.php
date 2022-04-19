@@ -35,17 +35,32 @@ function getListContacts(string $filename)
     echo "</table";
 }
 
+/**
+ * Si le prenom est défini, récupérez le contenu du fichier, ajoutez le nouveau contact à la fin du
+ * fichier et écrivez le nouveau contenu dans le fichier.
+ * 
+ * @param string filename Le nom du fichier dans lequel écrire.
+ */
 function addContact(string $filename)
 {
     if (isset($_GET['prenom'])) {
         $tableauContacts = file_get_contents($filename);
         $tableauContacts .= "\n" . $_GET['prenom'] . ";" . $_GET['nom'] . ";" . $_GET['telephone'];
-        file_put_contents($filename, $tableauContacts);
+        file_put_contents($filename, $tableauContacts, FILE_APPEND);
     } else {
         echo "rien ajouté";
     }
 }
 
+/**
+ * Il prend un nom de fichier, un prénom, un nom et un numéro de téléphone comme arguments, et renvoie
+ * une table des contacts correspondants
+ * 
+ * @param string filename Le nom du fichier à rechercher.
+ * @param string prenom Le prénom du contact.
+ * @param string nom Le nom du fichier à rechercher.
+ * @param string telephone le numéro de téléphone du contact
+ */
 function searchContact(string $filename, string $prenom = "*", string $nom = "*", string $telephone = "*")
 {
     $tableauContact = file($filename);
@@ -58,6 +73,8 @@ function searchContact(string $filename, string $prenom = "*", string $nom = "*"
                 <th>NOM</th>
                 <th>TELEPHONE</th>
                 </tr><br>";
+
+    /* Recherche du contact dans le fichier. */
     foreach ($tableauContact as $key => $contact) {
         if ((stristr($contact, $prenom)) || (stristr($contact, $nom)) || (stristr($contact, $telephone))) {
             $contactTrouve = explode(";", $contact);
@@ -71,12 +88,19 @@ function searchContact(string $filename, string $prenom = "*", string $nom = "*"
             $resultat++;
         }
     }
+
     if ($resultat == 8) {
         echo "inconnu au bataillon.<br><br>";
     }
     echo "</table><br>";
 }
 
+/**
+ * Il supprime un contact d'un fichier.
+ * 
+ * @param string filename le nom du fichier à lire
+ * @param string identifiant l'identifiant unique du contact
+ */
 function removeContact(string $filename, string $identifiant)
 {
     $tableauContacts = getListContacts($filename);
