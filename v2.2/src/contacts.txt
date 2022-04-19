@@ -5,3 +5,4 @@ Petit;Lapin;07-56-44-88-77
 jeannot;Lapinou;563789
 Ernest;Celestine;468789
 Alan;Quaterman;789654
+Crazy;Frog;6541231587

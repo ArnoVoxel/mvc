@@ -50,10 +50,7 @@ function searchContact(string $filename, string $prenom = "*", string $nom = "*"
 {
     $tableauContact = file($filename);
     $resultat = 0;
-    foreach ($tableauContact as $key => $contact) {
-        if ((stristr($contact, $prenom)) || (stristr($contact, $nom)) || (stristr($contact, $telephone))) {
-            $contactTrouve = explode(";", $contact);
-            echo "
+    echo "
                 <table>
                 <tr>
                 <th>ID</th>
@@ -61,6 +58,10 @@ function searchContact(string $filename, string $prenom = "*", string $nom = "*"
                 <th>NOM</th>
                 <th>TELEPHONE</th>
                 </tr><br>";
+    foreach ($tableauContact as $key => $contact) {
+        if ((stristr($contact, $prenom)) || (stristr($contact, $nom)) || (stristr($contact, $telephone))) {
+            $contactTrouve = explode(";", $contact);
+
             echo "<tr>
                 <td>$key</td>
                 <td>$contactTrouve[0]</td>
@@ -73,6 +74,7 @@ function searchContact(string $filename, string $prenom = "*", string $nom = "*"
     if ($resultat == 8) {
         echo "inconnu au bataillon.<br><br>";
     }
+    echo "</table><br>";
 }
 
 function removeContact(string $filename, string $identifiant)
