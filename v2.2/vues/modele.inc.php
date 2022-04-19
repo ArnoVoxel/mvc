@@ -44,8 +44,8 @@ function getListContacts(string $filename)
 function addContact(string $filename)
 {
     if (isset($_GET['prenom'])) {
-        $tableauContacts = file_get_contents($filename);
-        $tableauContacts .= "\n" . $_GET['prenom'] . ";" . $_GET['nom'] . ";" . $_GET['telephone'];
+
+        $tableauContacts = $_GET['prenom'] . ";" . $_GET['nom'] . ";" . $_GET['telephone'] . "\n";
         file_put_contents($filename, $tableauContacts, FILE_APPEND);
     } else {
         echo "rien ajouté";
