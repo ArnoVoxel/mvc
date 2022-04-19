@@ -89,7 +89,7 @@ function searchContact(string $filename, string $prenom = "*", string $nom = "*"
         }
     }
 
-    if ($resultat == 8) {
+    if (($resultat == 8) && strlen($contactTrouve[0]) < 1) {
         echo "inconnu au bataillon.<br><br>";
     }
     echo "</table><br>";
@@ -108,6 +108,17 @@ function removeContact(string $filename, string $identifiant)
         unset($tableauContacts[$identifiant]);
     file_put_contents($filename, "");
     foreach ($tableauContacts as $key => $contact) {
+        file_put_contents($filename, "$contact", FILE_APPEND);
+    }
+}
+
+function updateContact(string $filename, string $identifiant, string $nouveauPrenom, string $nouveauNom, string $nouveauTelephone)
+{
+    //récupère la liste de contact sous forme de tableau
+    $tableauContact = file($filename);
+    $tableauContact[$identifiant] = $nouveauPrenom . ";" . $nouveauNom . ";" . $nouveauTelephone;
+    file_put_contents($filename, "");
+    foreach ($tableauContact as $key => $contact) {
         file_put_contents($filename, "$contact", FILE_APPEND);
     }
 }

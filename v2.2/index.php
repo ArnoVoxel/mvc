@@ -76,12 +76,12 @@ switch ($action) {
         require("vues/view_rechercheContact.php");
         require("vues/view_footer.html");
         break;
-    case 'supprimer':
+    case 'suppressionContact':
         $titre = "Quel contact voulez-vous supprimer ?";
         $titrePage = "SUPPRESSION";
         require("vues/view_header.php");
         getListContacts($listeContact);
-        require("vues/view_supprimerContact.php");
+        require("vues/view_idContact.php");
         require("vues/view_footer.html");
         break;
     case 'suppressionContactOK':
@@ -95,5 +95,28 @@ switch ($action) {
         removeContact($listeContact, $identifiant);
         require("vues/view_header.php");
         require("vues/view_accueil.php");
+        break;
+    case 'modifier':
+        $titre = "Choisissez l'ID du contact à modifier";
+        $titrePage = "UPDATE";
+        require("vues/view_header.php");
+        //affiche la liste avec leur ID
+        getListContacts($listeContact);
+        require("vues/view_idContact.php");
+        require("vues/view_footer.html");
+        break;
+    case 'modifierOK':
+        $titre = "Nouveaux identifiants à enregistrer";
+        $titrePage = "UPDATE";
+        require("vues/view_header.php");
+        require("vues/view_modifierContact.php");
+        require("vues/view_footer.html");
+        break;
+    case 'resultatModification':
+        $titre = "Nouveaux identifiants à enregistrer";
+        $titrePage = "UPDATE";
+        require("vues/view_header.php");
+        updateContact($listeContact, $_GET['identifiant'], $_GET['prenomRecherche'], $_GET['nomRecherche'], $_GET['telephoneRecherche']);
+        require("vues/view_footer.html");
         break;
 }
