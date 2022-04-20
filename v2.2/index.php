@@ -80,7 +80,7 @@ switch ($action) {
         $titre = "Quel contact voulez-vous supprimer ?";
         $titrePage = "SUPPRESSION";
         require("vues/view_header.php");
-        getListContacts($listeContact);
+        require("vues/view_listeContacts.php");
         require("vues/view_idContact.php");
         require("vues/view_footer.html");
         break;
@@ -101,7 +101,7 @@ switch ($action) {
         $titrePage = "UPDATE";
         require("vues/view_header.php");
         //affiche la liste avec leur ID
-        getListContacts($listeContact);
+        require("vues/view_listeContacts.php");
         require("vues/view_idContact.php");
         require("vues/view_footer.html");
         break;
