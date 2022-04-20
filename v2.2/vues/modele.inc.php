@@ -60,40 +60,67 @@ function addContact(string $filename)
  * @param string prenom Le prénom du contact.
  * @param string nom Le nom du fichier à rechercher.
  * @param string telephone le numéro de téléphone du contact
+ * 
+ * @return arrayt tableau contenant les index des valeurs de la recherche
  */
-function searchContact(string $filename, string $prenom = "*", string $nom = "*", string $telephone = "*")
+function searchContact(string $filename, string $prenom = "*", string $nom = "*", string $telephone = "*"): array
 {
     $tableauContact = file($filename);
-    $resultat = 0;
-    echo "
-                <table>
-                <tr>
-                <th>ID</th>
-                <th>PRENOM</th>
-                <th>NOM</th>
-                <th>TELEPHONE</th>
-                </tr><br>";
+    $index = [];
+    $curseur = 0;
+
 
     /* Recherche du contact dans le fichier. */
     foreach ($tableauContact as $key => $contact) {
         if ((stristr($contact, $prenom)) || (stristr($contact, $nom)) || (stristr($contact, $telephone))) {
-            $contactTrouve = explode(";", $contact);
-
-            echo "<tr>
-                <td>$key</td>
-                <td>$contactTrouve[0]</td>
-                <td>$contactTrouve[1]</td>
-                <td>$contactTrouve[2] </td>
-                </tr>";
+            $index[] = $key;
         } else {
-            $resultat++;
+            $curseur++;
         }
     }
 
-    if (($resultat == 8) && strlen($contactTrouve[0]) < 1) {
-        echo "inconnu au bataillon.<br><br>";
+    return $index;
+}
+
+/**
+ * Il affiche le résultat de la recherche.
+ * 
+ * @param string filename le nom du fichier à rechercher
+ * @param array tableauIndex tableau des index des contacts trouvés
+ */
+function displayResult(string $filename, array $tableauIndex)
+{
+    if (count($tableauIndex) > 0) {
+        $tableauContact = file($filename);
+        //entête du tableau de résultat
+        echo "
+        <table>
+        <tr>
+        <th>ID</th>
+        <th>PRENOM</th>
+        <th>NOM</th>
+        <th>TELEPHONE</th>
+        </tr><br>";
+
+        foreach ($tableauIndex as $keyIndice => $indice) {
+            foreach ($tableauContact as $key => $contact) {
+                $contactTrouve = explode(";", $contact);
+                if ($key == $indice) {
+                    echo "<tr>
+                    <td>$key</td>
+                    <td>$contactTrouve[0]</td>
+                    <td>$contactTrouve[1]</td>
+                    <td>$contactTrouve[2] </td>
+                    </tr>";
+                }
+            }
+        }
+
+
+        echo "</table><br>";
+    } else {
+        echo "inconnu au bataillon<br><br>";
     }
-    echo "</table><br>";
 }
 
 /**

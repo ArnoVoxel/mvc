@@ -11,8 +11,11 @@
     <label for="telephoneRecherche">Entrer un NUMERO de TELEPHONE à chercher : </label>
     <input type="text" name="telephoneRecherche">
     <br>
+    <br>
     <a href="index.php?action=resultatRecherche">
         <input type="hidden" name="action" value="resultatRecherche">
     </a>
     <input type="submit" value="chercher">
+    <br>
+    <br>
 </form>

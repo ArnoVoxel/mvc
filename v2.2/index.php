@@ -73,6 +73,7 @@ switch ($action) {
             $telephoneRecherche = " ";
         }
         searchContact($listeContact, $prenomRecherche, $nomRecherche, $telephoneRecherche);
+        displayResult($listeContact, (searchContact($listeContact, $prenomRecherche, $nomRecherche, $telephoneRecherche)));
         require("vues/view_rechercheContact.php");
         require("vues/view_footer.html");
         break;

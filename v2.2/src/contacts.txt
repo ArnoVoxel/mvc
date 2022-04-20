@@ -7,4 +7,5 @@ Gros;Malin;456489
 Ernest;Celestine;468789
 Mange;Pierre;456789
 alacon;DeBug;654879
-René;Le Grosse Taupe;1465456456
+René;LaGrosseTaupe;1465456456
+Pascrazy;Frog;6548971321
