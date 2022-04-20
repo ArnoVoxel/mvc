@@ -7,6 +7,6 @@
     <a href="index.php?action=suppressionContactOK">
         <input type="hidden" name="action" value=<?php echo $_GET['action'] . "OK" ?>>
     </a>
-    <input type="submit" value="Supprimer">
+    <input type="submit" value="<?php echo $_GET['action'] ?>">
     <br />
 </form>

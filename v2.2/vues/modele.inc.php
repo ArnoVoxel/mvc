@@ -24,15 +24,15 @@ function getListContacts(string $filename)
             <td>$key</td>
             <td>$tableauInfo[0]</td>
             <td>$tableauInfo[1]</td>
-            <td>$tableauInfo[2] </td>";
+            <td>$tableauInfo[2] </td>
+            </tr>";
             //echo "PRENOM : " . $tableauInfo[0] . " NOM : " . $tableauInfo[1] . " TELEPHONE : " . $tableauInfo[2] . "<br />";
         }
-        return $tableauContacts;
     } else {
         echo "pas de fichier contacts";
     }
 
-    echo "</table";
+    echo "</table>";
 }
 
 /**
@@ -83,7 +83,8 @@ function searchContact(string $filename, string $prenom = "*", string $nom = "*"
                 <td>$key</td>
                 <td>$contactTrouve[0]</td>
                 <td>$contactTrouve[1]</td>
-                <td>$contactTrouve[2] </td>";
+                <td>$contactTrouve[2] </td>
+                </tr>";
         } else {
             $resultat++;
         }
