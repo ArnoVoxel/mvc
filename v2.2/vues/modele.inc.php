@@ -160,7 +160,7 @@ function updateContact(string $filename, string $identifiant, string $nouveauPre
 {
     //récupère la liste de contact sous forme de tableau
     $tableauContact = file($filename);
-    $tableauContact[$identifiant] = $nouveauPrenom . ";" . $nouveauNom . ";" . $nouveauTelephone;
+    $tableauContact[$identifiant] = $nouveauPrenom . ";" . $nouveauNom . ";" . $nouveauTelephone . "\n";
     file_put_contents($filename, "");
     foreach ($tableauContact as $key => $contact) {
         file_put_contents($filename, "$contact", FILE_APPEND);
