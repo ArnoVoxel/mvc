@@ -57,23 +57,23 @@ switch ($action) {
         $titre = "résultat de recherche";
         $titrePage = "RESULTAT";
         require("vues/view_header.php");
-        if (strlen($_GET['nomRecherche']) > 1) {
-            $nomRecherche = $_GET['nomRecherche'];
-        } else {
-            $nomRecherche = " ";
-        }
-        if (strlen($_GET['prenomRecherche']) > 1) {
-            $prenomRecherche = $_GET['prenomRecherche'];
-        } else {
-            $prenomRecherche = " ";
-        }
-        if (strlen($_GET['telephoneRecherche']) > 1) {
-            $telephoneRecherche = $_GET['telephoneRecherche'];
-        } else {
-            $telephoneRecherche = " ";
-        }
-        searchContact($listeContact, $prenomRecherche, $nomRecherche, $telephoneRecherche);
-        displayResult($listeContact, (searchContact($listeContact, $prenomRecherche, $nomRecherche, $telephoneRecherche)));
+        // if (strlen($_GET['nomRecherche']) > 1) {
+        //     $nomRecherche = $_GET['nomRecherche'];
+        // } else {
+        //     $nomRecherche = " ";
+        // }
+        // if (strlen($_GET['prenomRecherche']) > 1) {
+        //     $prenomRecherche = $_GET['prenomRecherche'];
+        // } else {
+        //     $prenomRecherche = " ";
+        // }
+        // if (strlen($_GET['telephoneRecherche']) > 1) {
+        //     $telephoneRecherche = $_GET['telephoneRecherche'];
+        // } else {
+        //     $telephoneRecherche = " ";
+        // }
+        searchContact($listeContact);
+        displayResult($listeContact, (searchContact($listeContact)));
         require("vues/view_rechercheContact.php");
         require("vues/view_footer.html");
         break;

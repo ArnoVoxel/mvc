@@ -63,22 +63,38 @@ function addContact(string $filename)
  * 
  * @return arrayt tableau contenant les index des valeurs de la recherche
  */
-function searchContact(string $filename, string $prenom = "*", string $nom = "*", string $telephone = "*"): array
+function searchContact(string $filename): array
 {
     $tableauContact = file($filename);
     $index = [];
     $curseur = 0;
 
+    if (strlen($_GET['nomRecherche']) == 0) {
+        $nomRecherche = " ";
+    } else {
+        $nomRecherche = $_GET['nomRecherche'];
+    }
+    if (strlen($_GET['prenomRecherche']) == 0) {
+        $prenomRecherche = " ";
+    } else {
+        $prenomRecherche = $_GET['prenomRecherche'];
+    }
+    if (strlen($_GET['telephoneRecherche']) == 0) {
+        $telephoneRecherche = " ";
+    } else {
+        $telephoneRecherche = $_GET['telephoneRecherche'];
+    }
+
 
     /* Recherche du contact dans le fichier. */
     foreach ($tableauContact as $key => $contact) {
-        if ((stristr($contact, $prenom)) || (stristr($contact, $nom)) || (stristr($contact, $telephone))) {
+        if ((stristr($contact, $prenomRecherche)) || (stristr($contact, $nomRecherche)) || (stristr($contact, $telephoneRecherche))) {
             $index[] = $key;
         } else {
             $curseur++;
         }
     }
-
+    $_GET['index'] = (count($tableauContact) - $curseur);
     return $index;
 }
 
